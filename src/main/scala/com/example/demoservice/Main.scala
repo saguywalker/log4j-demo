@@ -19,9 +19,6 @@ object RequestBody:
   given [F[_]: Concurrent]: EntityDecoder[F, RequestBody] = jsonOf
 
 object Main extends IOApp.Simple:
-  System.setProperty("com.sun.jndi.rmi.object.trustURLCodebase", "true")
-  System.setProperty("com.sun.jndi.ldap.object.trustURLCodebase", "true")
-
   private val logger = LogManager.getLogger(this.getClass)
 
   private val httpApp = HttpRoutes.of[IO] {

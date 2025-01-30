@@ -2,9 +2,7 @@
 <Configuration status="WARN">
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <!--
-            <PatternLayout pattern="[%t] %m{nolookups} %n"/>
-            -->
+<!--            <PatternLayout pattern="[%t] %m{nolookups} %n"/>-->
             <PatternLayout pattern="[%t] %m %n"/>
         </Console>
     </Appenders>
