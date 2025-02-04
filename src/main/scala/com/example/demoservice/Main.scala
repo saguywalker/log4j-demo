@@ -13,7 +13,7 @@ import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.implicits.*
 
 
-final case class RequestBody(query: String)
+final case class RequestBody(data: String)
 object RequestBody:
   given Decoder[RequestBody] = Decoder.derived[RequestBody]
   given [F[_]: Concurrent]: EntityDecoder[F, RequestBody] = jsonOf
@@ -25,8 +25,9 @@ object Main extends IOApp.Simple:
     case req @ POST -> Root / "reverse" =>
       for {
         request <- req.as[RequestBody]
-        _ = logger.info(s"reversing: ${request.query}")
-        resp <- Ok(request.query.reverse)
+        result = request.data.reverse
+        _ = logger.info(s"reversing ${request.data} to $result")
+        resp <- Ok(result)
       } yield resp
   }.orNotFound
 
